@@ -186,6 +186,11 @@ vim.keymap.set('n', '<leader>p', ':tabprevious<CR>', { desc = 'Move focus to the
 vim.keymap.set('n', '<leader>N', ':tabnew<CR>', { desc = 'Create new Tab' })
 vim.keymap.set('n', '<Leader>w', ':tabclose', { desc = 'Close current Tab' })
 
+-- Keybinds for splitting windows
+--
+vim.keymap.set('n', '<leader>|', ':vsplit<CR>', { desc = 'Split window vertically' })
+vim.keymap.set('n', '<leader>-', ':split<CR>', { desc = 'Split window horizontally' })
+
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
