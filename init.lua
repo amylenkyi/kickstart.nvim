@@ -381,6 +381,9 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
       { 'princejoogie/dir-telescope.nvim' },
       { 'nvim-telescope/telescope-ui-select.nvim' },
+      -- Useful to Live grep args picker for telescope.nvim.
+      -- See: https://github.com/nvim-telescope/telescope-live-grep-args.nvim
+      { 'nvim-telescope/telescope-live-grep-args.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
