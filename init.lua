@@ -482,7 +482,29 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          -- -- Show Hidden files in the file search.
+          -- find_files = {
+          --   hidden = true,
+          -- },
+          -- -- Grep through hidden files
+          -- live_grep = {
+          --   -- pass additional args to rg to not exclude ignored files by git
+          --   additional_args = { '-uuu' },
+          -- },
+        },
+        defaults = {
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
