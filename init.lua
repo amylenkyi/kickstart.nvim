@@ -244,6 +244,23 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'mbbill/undotree', -- visuzlise undotree
+  -- "Github Copilot"
+  'github/copilot.vim',
+
+  -- CopilotChat: https://github.com/CopilotC-Nvim/CopilotChat.nvim
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    branch = 'main',
+    dependencies = {
+      { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
+      { 'nvim-lua/plenary.nvim' }, -- for curl, log wrapper
+    },
+    opts = {
+      debug = true, -- Enable debugging
+      -- See Configuration section for rest
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
