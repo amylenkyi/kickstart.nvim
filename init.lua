@@ -895,7 +895,14 @@ require('lazy').setup({
       }
     end,
   },
-
+  -- Themes
+  {
+    -- taken from https://vimcolorschemes.com/catppuccin/nvim
+    -- Customization and details: https://github.com/catpnin/nvim
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+  },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
