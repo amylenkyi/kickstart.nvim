@@ -334,22 +334,85 @@ require('lazy').setup({
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup()
-
-      -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-        ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+      --
+      -- vim.keymap.set('n', '<leader>c', 'which_key_ignore', { desc = '[C]ode' })
+      -- vim.keymap.set('n', '<leader>d', 'which_key_ignore', { desc = '[D]ocument' })
+      -- vim.keymap.set('n', '<leader>r', 'which_key_ignore', { desc = '[R]ename' })
+      -- vim.keymap.set('n', '<leader>s', 'which_key_ignore', { desc = '[S]earch' })
+      -- vim.keymap.set('n', '<leader>w', 'which_key_ignore', { desc = '[W]orkspace' })
+      -- vim.keymap.set('n', '<leader>t', 'which_key_ignore', { desc = '[T]oggle' })
+      -- vim.keymap.set('n', '<leader>h', 'which_key_ignore', { desc = 'Git [H]unk' })
+      -- vim.keymap.set('v', '<leader>h', 'which_key_ignore', { desc = 'Git [H]unk' })
+      --
+      require('which-key').add {
+        { '<leader>c', group = '[C]ode' },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>t', group = '[T]oggle' },
+        { '<leader>h', group = '[H]unks in Git' },
       }
-      -- visual mode
-      require('which-key').register({
-        ['<leader>h'] = { 'Git [H]unk' },
-      }, { mode = 'v' })
+      require('which-key').add {
+        { '<leader>h', group = '[H]unks in Git' },
+        { mode = 'v' },
+      }
+      -- -- Document existing key chains
+      -- require('which-key').register {
+      --   ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+      --   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+      --   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+      --   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+      --   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+      --   ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
+      --   ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+      -- }
+      -- -- visual mode
+      -- require('which-key').register({
+      --   ['<leader>h'] = { 'Git [H]unk' },
+      -- }, { mode = 'v' })
     end,
+  },
+
+  {
+    'SmiteshP/nvim-navbuddy',
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'MunifTanjim/nui.nvim',
+    },
+    opts = {
+      lsp = { auto_attach = true },
+      window = { border = 'rounded' },
+    },
+    config = function(_, opts)
+      local navbuddy = require 'nvim-navbuddy'
+      navbuddy.setup(opts)
+      vim.keymap.set('n', '<leader>cn', function()
+        navbuddy.open()
+      end, { desc = 'LSP: [C]ode [N]avigation' })
+    end,
+  },
+
+  {
+    -- https://sr.ht/~hedy/outline.nvim/#installation
+    'hedyhli/outline.nvim',
+    lazy = true,
+    cmd = { 'Outline', 'OutlineOpen' },
+    keys = { -- Example mapping to toggle outline
+      { '<leader>co', '<cmd>Outline<CR>', desc = 'Toggle [C]ode [O]utline' },
+    },
+    opts = {
+      -- Your setup opts here
+      outline_window = {
+        position = 'left',
+        -- Percentage or integer of columns
+        width = 20,
+        -- Whether width is relative to the total width of nvim
+        -- When relative_width = true, this means take 25% of the total
+        -- screen width for outline window.
+        relative_width = true,
+      },
+    },
   },
 
   -- NOTE: Plugins can specify dependencies.
