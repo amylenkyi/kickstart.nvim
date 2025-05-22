@@ -289,7 +289,29 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      vim.keymap.set('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', { desc = '[G]it [P]review' }),
+      vim.keymap.set('n', '<leader>gt', ':Gitsigns toggle_current_line_blame<CR>', { desc = '[G]it [T]oggle current line' }),
     },
+  },
+
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
+      'nvim-telescope/telescope.nvim', -- optional
+      --'ibhagwan/fzf-lua', -- optional
+    },
+    -- config = true,
+    config = function()
+      -- init.lua
+      -- local neogit = require 'neogit'
+      -- neogit.setup {}
+      require('neogit').setup {}
+      vim.keymap.set('n', '<leader>gn', ':Neogit kind=vsplit<CR>', { desc = '[G]it [P]review' })
+    end,
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
